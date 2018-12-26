@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登录</title>
+	<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+	<script type="text/javascript" src="../js/axios.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/default.css">
+
+<!--必要样式-->
+<link rel="stylesheet" type="text/css" href="../css/styles.css">
+</head>
+<body>
+
+<div class='login' id="login">
+  <div class='login_title'>
+	<span>账号登录</span><span style="margin-left: 42%;font-size: 12px;"><u><a v-bind:href="url2">立即注册</a></u></span>
+  </div>
+  <div class='login_fields'>
+	<div class='login_fields__user'>
+	  <div class='icon'>
+	  </div>
+	  <input placeholder='输入手机号' type='text' id="username" v-model="user">
+		<div class='validation'>
+		</div>
+	  </input>
+	</div>
+	<div class='login_fields__password'>
+	  <div class='icon'>
+	  </div>
+	  <input placeholder='输入密码' type='password' id="password" v-model="pwd">
+	  <div class='validation'>
+	  </div>
+	</div>
+	
+	<div class='login_fields__submit'>
+	  <input type='button' value='登录' @click="login">
+	  <div class='forgot'>
+		
+	  </div>
+	</div>
+	
+  </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	new Vue({
+			el:'#login',
+			data:{
+				user:'',
+				pwd:'',
+				url2:'注册.html',
+			},
+			
+</script>

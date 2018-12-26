@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>注册</title>
+	<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/default.css">
+
+<!--必要样式-->
+<link rel="stylesheet" type="text/css" href="../css/styles.css">
+</head>
+<body>
+
+<div class='login' id="register">
+  <div class='login_title'>
+	<span>账号注册</span>
+  </div>
+  <div class='login_fields'>
+	<div class='login_fields__user'>
+	  <div class='icon'>
+	  </div>
+	  <input placeholder='手机号' type='text' id="username" v-model="telphone">
+		<div class='validation'>
+		</div>
+	  </input>
+	</div>
+	<div class='login_fields__password'>
+	  <div class='icon'>
+	  </div>
+	  <input placeholder='密码' type='password' id="password" v-model="password">
+	  <div class='validation'>
+	  </div>
+	</div>
+	<div class='login_fields__password'>
+		<div class='icon'>
+		</div>
+		<input placeholder='邮箱' type='text' v-model="email">
+		<div class='validation'>
+		</div>
+	</div>
+	<div class='login_fields__submit'>
+	  <input type='button' value='注册' @click="register">
+	  <div class='forgot'>
+	
+	  </div>
+	</div>
+  </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	new Vue({
+			el:'#register',
+			data:{
+				telphone:'',
+				password:'',
+				email:'',
+			},
+			methods:{
+				register:function(){
+					 this.$http.post('http://wangshengli.haoyunyun.cn/api/register',{key:"02e4408b1db4bd48652eacb7393a5a9cad59e38a",telphone:this.telphone,pwd:this.password,email:this.email},{emulateJSON:true}).then(function(res){
+                    window.location='登录.html';    
+                },function(res){
+                    console.log(res.status);
+                });
+				}
+			}
+	})
+</script>

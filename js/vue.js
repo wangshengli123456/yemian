@@ -1,0 +1,63 @@
+window.onload = function(){
+	var vm = new Vue({
+	    el:'#box',
+	    data:{
+	        list:'',
+	        nav:'',
+	        navson:'',
+	        zb:'',
+	        zbson:'',
+			url1:'个人中心.html',
+	    },
+		mounted:function() {
+			this.getInfo();
+			this.getNav();
+			this.getNavSon();
+			this.getZb();
+			this.getZbSon();
+		},
+	    methods:{
+	        getInfo:function(){
+	            //发送 post 请求
+	            this.$http.post('http://wangshengli.haoyunyun.cn/api/starmanito',{key:"02e4408b1db4bd48652eacb7393a5a9cad59e38a"},{emulateJSON:true}).then(function(res){
+                
+					this.list=res.body.data;
+                },function(res){
+                    console.log(res.status);
+                });
+	        },
+            getNav:function(){
+                 this.$http.post('http://wangshengli.haoyunyun.cn/api/help',{key:"02e4408b1db4bd48652eacb7393a5a9cad59e38a"},{emulateJSON:true}).then(function(res){
+                    this.nav=res.body.data;
+                    console.log(res);
+                },function(res){
+                    console.log(res.status);
+                });
+            },
+            getNavSon:function(){
+                 this.$http.post('http://wangshengli.haoyunyun.cn/api/zbhelp',{id:'5',key:"02e4408b1db4bd48652eacb7393a5a9cad59e38a"},{emulateJSON:true}).then(function(res){
+                    this.navson=res.body.data;
+                    console.log(res);
+                },function(res){
+                    console.log(res.status);
+                });
+            },
+             getZb:function(){
+                 this.$http.post('http://wangshengli.haoyunyun.cn/api/type',{key:"02e4408b1db4bd48652eacb7393a5a9cad59e38a"},{emulateJSON:true}).then(function(res){
+                    this.zb=res.body.data;
+                    console.log(res);
+                },function(res){
+                    console.log(res.status);
+                });
+            },
+             getZbSon:function(){
+                 this.$http.post('http://wangshengli.haoyunyun.cn/api/zbtype',{id:'1',key:"02e4408b1db4bd48652eacb7393a5a9cad59e38a"},{emulateJSON:true}).then(function(res){
+                    this.zbson=res.body.data;
+                    console.log(res);
+                },function(res){
+                    console.log(res.status);
+                });
+            }
+	    }
+	});
+}

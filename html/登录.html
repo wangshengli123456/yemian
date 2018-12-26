@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登录</title>
+	<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+	<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+	<script type="text/javascript" src="../js/axios.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/default.css">
+
+<!--必要样式-->
+<link rel="stylesheet" type="text/css" href="../css/styles.css">
+</head>
+<body>
+
+<div class='login' id="login">
+  <div class='login_title'>
+	<span>账号找回</span><span style="margin-left: 42%;font-size: 12px;"><u><a v-bind:href="url2">立即注册</a></u></span>
+  </div>
+  <div class='login_fields'>
+	<div class='login_fields__user'>
+	  <div class='icon'>
+	  </div>
+	  <input placeholder='输入用户名或者手机号' type='text' id="username" v-model="user">
+		<div class='validation'>
+		</div>
+	  </input>
+	</div>
+	<div class='login_fields__password'>
+	  <div class='icon'>
+	  </div>
+	  <input placeholder='输入密码' type='password' id="password" v-model="pwd">
+	  <div class='validation'>
+	  </div>
+	</div>
+	
+	<div class='login_fields__submit'>
+	  <input type='button' value='登录' @click="login">
+	  <div class='forgot'>
+		<a href='忘记密码.html'>忘记密码?</a>
+	  </div>
+	</div>
+	<div>
+		<p style="margin-top: 17%;margin-left: 7%;">第三方登录</p>
+		<p style="margin-top: 7%;margin-left: 7%;"><a href="http://wangshengli.haoyunyun.cn/api/qqlogin" title="QQ登录"><img src="../images/qqlogo.png" width="20" height="25"></a></p>
+	</div>
+  </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	new Vue({
+			el:'#login',
+			data:{
+				user:'',
+				pwd:'',
+				url2:'注册.html',
+			},
+			methods:{
+				login:function(){
+					 this.$http.post('http://wangshengli.haoyunyun.cn/api/login',{key:"02e4408b1db4bd48652eacb7393a5a9cad59e38a",user:this.user,pwd:this.pwd},{emulateJSON:true}).then(function(res){
+						 
+								if(res.body.status==100){
+									window.location='index.html';
+								}else if(res.body.status==102){
+									alert('密码不正确');
+								}
+                },function(res){
+                    alert('登录失败');
+                });
+				}
+			}
+	})
+</script>
